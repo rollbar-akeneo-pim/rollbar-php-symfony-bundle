@@ -1,6 +1,6 @@
 {
     "name": "rollbar-akeneo-pim/rollbar-php-symfony-bundle",
-    "description": "Bundle for Symfony that integrates Rollbar tracker",
+    "description": "Bundle for Symfony that integrates Rollbar tracker to Akeneo PIM",
     "type": "library",
     "license": "MIT",
     "authors": [
