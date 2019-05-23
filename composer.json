@@ -1,5 +1,5 @@
 {
-    "name": "rollbar/rollbar-php-symfony-bundle",
+    "name": "rollbar-akeneo-pim/rollbar-php-symfony-bundle",
     "description": "Bundle for Symfony that integrates Rollbar tracker",
     "type": "library",
     "license": "MIT",
@@ -11,6 +11,10 @@
         {
             "name": "Artur Moczulski",
             "email": "artur.moczulski@gmail.com"
+        },
+        {
+            "name": "Paulius Macernis",
+            "email": "sugalvojau@gmail.com"
         }
     ],
     "autoload": {
