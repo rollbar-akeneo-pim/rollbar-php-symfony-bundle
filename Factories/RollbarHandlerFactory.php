@@ -2,6 +2,8 @@
 
 namespace Rollbar\Symfony\RollbarBundle\Factories;
 
+use Pim\Bundle\UserBundle\Entity\User;
+use Pim\Bundle\UserBundle\Normalizer\UserNormalizer;
 use Psr\Log\LogLevel;
 use Rollbar\Monolog\Handler\RollbarHandler;
 use Rollbar\Rollbar;
@@ -38,14 +40,22 @@ class RollbarHandlerFactory
                     
                     try {
                         $token = $container->get('security.token_storage')->getToken();
-                        
                         if ($token) {
+                            /** @var User $user */
                             $user = $token->getUser();
-                            $serializer = $container->get('serializer');
-                            $person = \json_decode($serializer->serialize($user, 'json'), true);
+
+                            /** @var UserNormalizer $serializer */
+                            $normalizer = $container->get('pim_user.normalizer.user');
+                            $person = $normalizer->normalize($user, 'array');
+
+                            $person['id'] = $user->getId();
+                            $person['username'] = $user->getUsername();
+                            $person['email'] = $user->getEmail();
+
                             return $person;
+
                         }
-                    } catch (\Exception $exception) {
+                    } catch (\Throwable $exception) {
                         // Ignore
                     }
                 };
